@@ -152,12 +152,13 @@
         </p>
         <p>
           JavaScript errors sent to Sentry pass through a strict sanitizer and may contain error
-          type, sanitized message and stack trace, timestamps, approved build and event labels, and
-          fixed app-event breadcrumbs. Native crash handling runs separately and may send native
-          exception or signal details, thread and stack data, timestamps, app, release, build and
-          SDK metadata, device and operating-system or runtime context, loaded native modules or
-          packages, and native SDK breadcrumbs. The app does not set a Sentry user identity, but the
-          JavaScript field sanitizer does not apply to a native crash report.
+          type, sanitized message, stack trace, timestamps, approved build and event labels, and
+          fixed app-event breadcrumbs. Native diagnostic handling runs separately. Reports for
+          native crashes, Android ANRs, and iOS watchdog terminations may send native exception or
+          signal details, thread and stack data, timestamps, app, release, build and SDK metadata,
+          device and operating-system or runtime context, loaded native modules or packages, and
+          native SDK breadcrumbs. The app does not set a Sentry user identity, but the JavaScript
+          field sanitizer does not apply to these native diagnostic reports.
         </p>
         <p>
           Sentry also receives a narrowly limited app-start performance transaction. App-start
@@ -167,13 +168,13 @@
         </p>
         <p>
           The current Sentry configuration disables UI-interaction traces, broad automatic
-          performance or network traces, failed-request capture, stall tracking, profiles, replays,
-          user feedback, application logs, automatic sessions, screenshots, view hierarchy, and
-          default personally identifiable information. The app-start transaction sanitizer removes
-          users, requests, unrelated contexts and spans, breadcrumbs, and arbitrary transaction
-          data; the JavaScript error sanitizer removes those fields from JavaScript-captured errors.
-          Native crash reports may retain the native technical context and breadcrumbs described
-          above.
+          performance or network traces, failed-request capture, JavaScript event-loop stall
+          measurements, profiles, replays, user feedback, application logs, automatic sessions,
+          screenshots, view hierarchy, and default personally identifiable information. The
+          app-start transaction sanitizer removes users, requests, unrelated contexts and spans,
+          breadcrumbs, and arbitrary transaction data; the JavaScript error sanitizer removes those
+          fields from JavaScript-captured errors. Native diagnostic reports may retain the native
+          technical context and breadcrumbs described above.
         </p>
         <p>
           Expo Observe receives startup measurements such as cold and warm launch time, JavaScript
